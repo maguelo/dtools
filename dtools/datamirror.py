@@ -51,7 +51,9 @@ class DatasetMirror():
         # Create sets of a,b
         columns = set(columns)
         # Get new set with elements that are only in a but not in b
-        return columns.difference(self.ignore_columns)
+        columns=columns.difference(self.ignore_columns)
+        print ("Ignore columns: output", columns)
+        return columns
   
     def filter_threshold(self, data, column, threshold, is_training=True):
         if is_training:
@@ -86,7 +88,7 @@ class DatasetMirror():
             print ("{}: {}/{} --- Remove {}%".format(column,na, len(data),float(na)/len(data)))
         return data.dropna(subset=columns)
     
-    def apply_fcn(self, data, fcn_name, columns, params={}, is_training=True, ignore_column_enabled=True):
+    def apply_fcn(self, data, fcn_name, columns=[], params={}, is_training=True, ignore_column_enabled=True):
         if ignore_column_enabled:
             columns = self._ignore_columns(columns)
         if is_training:
