@@ -86,7 +86,7 @@ class DatasetMirror():
             print ("{}: {}/{} --- Remove {}%".format(column,na, len(data),float(na)/len(data)))
         return data.dropna(subset=columns)
     
-    def apply_fcn(self, data, fcn_name, columns, params, is_training=True):
+    def apply_fcn(self, data, fcn_name, columns, params={}, is_training=True):
 #                   ignore_column_enabled=True):
 #         if ignore_column_enabled:
 #             columns = self._ignore_columns(columns)
