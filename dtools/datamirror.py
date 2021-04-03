@@ -158,9 +158,9 @@ class DatasetMirror():
         for action in self._actions:
             print ("{}:\n\tparams: {}\n".format(action[0],action[1:]))
             
-    def transform(self, data):
+    def transform(self, data, is_training=False):
         for action in self._actions:
-            data=self.ACTIONS_DICT[action[0]](data,*action[1:], is_training=False)
+            data=self.ACTIONS_DICT[action[0]](data,*action[1:], is_training=is_training)
         return data
     
     def transform_split(self, data):
