@@ -23,7 +23,7 @@ class DatasetMirror():
     def _ignore_columns(self, columns):
         columns = set(columns)
         # Get new set with elements that are only in a but not in b
-        return columns.difference(self.ignore_columns)
+        return list(columns.difference(self.ignore_columns))
   
 
     def drop_columns(self,data, columns, is_training=True, ignore_column_enabled=True):
@@ -52,7 +52,7 @@ class DatasetMirror():
             columns = self._ignore_columns(columns)
         if is_training:
             self._actions.append(("apply_fcn",fcn_name, columns, params))
-        data=self._fcn[fcn_name](data, *columns, **params)
+        data=self._fcn[fcn_name](data, columns, **params)
         return data
 
     

@@ -44,7 +44,7 @@ class TestDataMirror(unittest.TestCase):
         self.datamirror.register_function("register_event", register_event)
         data = self.datamirror.apply_fcn("register_event", "test", ['param1'],{'test':'param2'})
         self.assertTrue(test_event.is_set())
-        self.assertEqual(data, ("test", 'param1',{'test':'param2'}))
+        self.assertEqual(data, ("test", ['param1'],{'test':'param2'}))
 
     def test_drop_columns(self):
         """Test drop_columns"""
